@@ -1,71 +1,99 @@
-# Credit Card Default Prediction
+# 💳 Credit Card Default Prediction
 
-This project focuses on predicting whether a customer will default on their credit card payment in the next month using a logistic regression model. The dataset used is the **UCI Credit Card Dataset**, and the project involves data preprocessing, exploratory data analysis (EDA), feature engineering, model building, and evaluation.
+This project aims to predict whether a credit card holder will default on payment next month using machine learning techniques. The analysis is done on the popular **UCI Credit Card Dataset**, and a **Logistic Regression** model is built using Python.
 
 ---
 
-## 📂 Dataset
+## 📂 Dataset Information
 
 - **Source**: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients)
 - **File**: `UCI_Credit_Card.csv`
-- **Features**:
-  - Demographic: `LIMIT_BAL`, `SEX`, `EDUCATION`, `MARRIAGE`, `AGE`
-  - Payment history: `PAY_0` to `PAY_6`
-  - Bill amounts: `BILL_AMT1` to `BILL_AMT6`
-  - Payment amounts: `PAY_AMT1` to `PAY_AMT6`
-  - **Target**: `default.payment.next.month` (1 = default, 0 = not default)
+- **Target Column**: `default.payment.next.month`
+- **Total Instances**: 30,000
+- **Features**: 23 (including credit limit, payment history, demographic info)
 
 ---
 
-## 🧪 Project Steps
+## 🛠️ Technologies Used
+
+- Python 3.x  
+- Jupyter Notebook  
+- IBM Cloud Object Storage  
+- Libraries:
+  - `pandas`, `numpy` – Data manipulation
+  - `matplotlib`, `seaborn` – Visualization
+  - `scikit-learn` – Model building and evaluation
+
+---
+
+## 🚀 Workflow
 
 ### 1. **Data Loading**
-Data is loaded from IBM Cloud Object Storage using the `ibm_boto3` library.
+- Data is accessed securely from IBM Cloud Object Storage using `ibm_boto3`.
 
-### 2. **Handling Missing Values**
-- Checked for and handled missing values using forward fill.
+### 2. **Preprocessing**
+- Missing values handled using forward-fill (`ffill`)
+- Created a new feature: `balance_limit_ratio = BILL_AMT1 / LIMIT_BAL`
+- Normalized numerical features using `StandardScaler`
 
-### 3. **Exploratory Data Analysis**
-- Visualized distributions (e.g., `LIMIT_BAL`)
-- Correlation heatmap to identify strongly related features
-- Boxplots to analyze relationships between features and the target
+### 3. **Exploratory Data Analysis (EDA)**
+- Histogram of credit limits
+- Correlation heatmap of all features
+- Boxplot: Credit limit vs Default status
 
-### 4. **Feature Engineering**
-- Created new feature: `balance_limit_ratio = BILL_AMT1 / LIMIT_BAL`
-
-### 5. **Data Preprocessing**
-- Separated target variable
-- Normalized features using `StandardScaler`
-
-### 6. **Model Building**
-- Used Logistic Regression
-- Split data into train and test sets (80/20)
-- Trained model and evaluated with ROC AUC Score
-
-### 7. **Model Evaluation**
-- Calculated **ROC AUC Score**
-- Plotted **K-S Statistic** to measure performance
+### 4. **Model Building**
+- Logistic Regression model using `scikit-learn`
+- Data split: 80% training, 20% testing
+- Evaluation Metrics:
+  - **ROC AUC Score**
+  - **KS Statistic** (Kolmogorov-Smirnov test)
 
 ---
 
-## 📊 Results
+## 📈 Evaluation Results
 
-- **ROC AUC Score**: _(Displayed in console output)_
-- **KS Statistic**: _(Displayed in console output and plotted)_
+- **ROC AUC Score**: *Displayed in notebook output*
+- **KS Statistic**: *Displayed in notebook output*
+- Plotted ROC curve and K-S chart
 
 ---
 
-## 📦 Requirements
+## 📊 Visualizations
 
-- Python 3.x
-- pandas
-- numpy
-- seaborn
-- matplotlib
-- scikit-learn
-- ibm_boto3
-- botocore
+- 📉 Histogram of `LIMIT_BAL`
+- 🔥 Heatmap of correlations
+- 📦 Boxplot showing `LIMIT_BAL` distribution across default status
+- 📊 K-S Chart to evaluate classifier performance
 
-Install dependencies using:
-```bash
-pip install pandas numpy seaborn matplotlib scikit-learn ibm_boto3
+---
+
+## 📁 Files
+
+- `credit_card_default_prediction.ipynb` – Main notebook containing code and outputs
+- `UCI_Credit_Card.csv` – Dataset (accessed via IBM Cloud)
+- `README.md` – Project overview
+
+---
+
+## 📌 Future Improvements
+
+- Try more advanced classifiers: Random Forest, XGBoost, etc.
+- Hyperparameter tuning using GridSearchCV
+- Address class imbalance using SMOTE or class weights
+- Deploy model using Flask or Streamlit
+
+---
+
+## 🙋‍♀️ Author
+
+**Pravallika Pataballa**  
+📧 [pataballapravallika@gmail.com](mailto:pataballapravallika@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/pravallika-pataballa-923572286/)  
+💻 [GitHub](https://github.com/pataballapravallika)
+
+---
+
+## 📌 License
+
+This project is licensed for educational and research purposes only.
+
